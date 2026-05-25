@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frequências Hz do Reiki</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #04050f;
+    --bg2: #080b1a;
+    --bg3: #0c1028;
+    --gold: #c9a84c;
+    --gold2: #f0d080;
+    --purple: #7b4fc9;
+    --violet: #a855f7;
+    --teal: #00d4aa;
+    --text: #e8e0f0;
+    --muted: #8878a0;
+    --card-bg: rgba(15,12,35,0.85);
+    --card-border: rgba(120,80,200,0.25);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Stars background */
+  body::before {
+    content:'';
+    position:fixed; inset:0; z-index:0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(123,79,201,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(0,212,170,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 40%);
+    pointer-events:none;
+  }
+
+  .stars {
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 33% 55%, rgba(200,180,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 67% 45%, rgba(180,220,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 48% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 95% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  }
+
+  .container {
+    position:relative; z-index:1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* Header */
+  header {
+    text-align:center;
+    padding: 50px 20px 30px;
+    position:relative;
+  }
+
+  .header-glow {
+    position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:300px; height:200px;
+    background: radial-gradient(ellipse, rgba(123,79,201,0.3) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  .mandala-ring {
+    width: 90px; height: 90px;
+    margin: 0 auto 16px;
+    border-radius:50%;
+    border: 1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    animation: spin 20s linear infinite;
+  }
+  .mandala-ring::before {
+    content:'';
+    position:absolute; inset:6px;
+    border-radius:50%;
+    border: 1px solid rgba(201,168,76,0.4);
+  }
+  .mandala-ring::after {
+    content:'☯';
+    font-size:32px;
+    color: var(--gold);
+    animation: spin 20s linear infinite reverse;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  h1 {
+    font-family:'Cinzel', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight:600;
+    color: var(--gold2);
+    letter-spacing:0.08em;
+    line-height:1.3;
+    text-shadow: 0 0 30px rgba(201,168,76,0.4);
+  }
+
+  .subtitle {
+    font-size:0.8rem;
+    color: var(--muted);
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    margin-top:8px;
+  }
+
+  .divider {
+    width:120px; height:1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20px auto;
+  }
+
+  /* Search */
+  .search-wrap {
+    margin: 0 auto 30px;
+    max-width: 500px;
+    position:relative;
+  }
+  .search-wrap input {
+    width:100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--card-border);
+    border-radius: 40px;
+    padding: 12px 20px 12px 46px;
+    color: var(--text);
+    font-family:'Raleway', sans-serif;
+    font-size:0.95rem;
+    outline:none;
+    transition: border-color 0.3s;
+  }
+  .search-wrap input::placeholder { color: var(--muted); }
+  .search-wrap input:focus { border-color: rgba(168,85,247,0.6); }
+  .search-icon {
+    position:absolute; left:16px; top:50%; transform:translateY(-50%);
+    color:var(--muted); font-size:1.1rem; pointer-events:none;
+  }
+  .search-hint {
+    text-align:center;
+    font-size:0.75rem;
+    color:var(--muted);
+    margin-top:8px;
+    letter-spacing:0.05em;
+  }
+
+  /* Tabs */
+  .tabs {
+    display:flex; gap:8px;
+    justify-content:center;
+    margin-bottom:28px;
+  }
+  .tab {
+    padding:7px 20px;
+    border-radius:30px;
+    border:1px solid var(--card-border);
+    background:transparent;
+    color:var(--muted);
+    font-family:'Raleway',sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    cursor:pointer;
+    transition: all 0.3s;
+  }
+  .tab.active {
+    background: rgba(123,79,201,0.25);
+    border-color: rgba(168,85,247,0.5);
+    color: var(--text);
+  }
+  .tab:hover:not(.active) { border-color:rgba(168,85,247,0.3); color:var(--text); }
+
+  /* Playlist bar */
+  .playlist-bar {
+    background: rgba(123,79,201,0.12);
+    border:1px solid rgba(168,85,247,0.2);
+    border-radius:12px;
+    padding:14px 20px;
+    margin-bottom:24px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    display:none;
+  }
+  .playlist-bar.visible { display:flex; }
+  .playlist-bar-info { flex:1; }
+  .playlist-bar-label { font-size:0.7rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; }
+  .playlist-bar-title { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--gold2); margin-top:2px; }
+  .playlist-bar-sub { font-size:0.75rem; color:var(--muted); margin-top:2px; }
+  .btn-playlist-play {
+    background: linear-gradient(135deg, var(--purple), var(--violet));
+    border:none; border-radius:50%;
+    width:44px; height:44px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    font-size:1.1rem;
+    color:#fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+    flex-shrink:0;
+  }
+  .btn-playlist-play:hover { transform:scale(1.08); box-shadow:0 0 16px rgba(168,85,247,0.5); }
+
+  /* Cards grid */
+  .grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+    gap:16px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    padding:20px;
+    cursor:pointer;
+    transition: all 0.3s;
+    position:relative;
+    overflow:hidden;
+    backdrop-filter: blur(10px);
+  }
+  .card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background: var(--chakra-color, var(--purple));
+    opacity:0.7;
+    border-radius:16px 16px 0 0;
+  }
+  .card:hover {
+    border-color:rgba(168,85,247,0.45);
+    transform:translateY(-3px);
+    box-shadow:0 8px 30px rgba(123,79,201,0.2);
+  }
+  .card.active-card {
+    border-color: rgba(201,168,76,0.5);
+    background: rgba(20,15,50,0.95);
+    box-shadow:0 0 30px rgba(201,168,76,0.15);
+  }
+
+  .card-header {
+    display:flex; align-items:flex-start; gap:12px; margin-bottom:14px;
+  }
+  .chakra-dot {
+    width:10px; height:10px; border-radius:50%;
+    background:var(--chakra-color, var(--purple));
+    flex-shrink:0; margin-top:5px;
+    box-shadow:0 0 8px var(--chakra-color, var(--purple));
+  }
+  .card-name {
+    font-family:'Cinzel',serif;
+    font-size:0.9rem;
+    font-weight:600;
+    color:var(--gold2);
+    line-height:1.3;
+  }
+  .card-hz {
+    font-size:0.75rem;
+    color:var(--muted);
+    letter-spacing:0.1em;
+    margin-top:2px;
+  }
+  .card-chakra {
+    font-size:0.7rem;
+    color:var(--chakra-color, var(--violet));
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-top:3px;
+  }
+
+  .card-tags {
+    display:flex; flex-wrap:wrap; gap:5px;
+    margin-bottom:14px;
+  }
+  .tag {
+    padding:3px 9px;
+    border-radius:20px;
+    font-size:0.68rem;
+    border:1px solid rgba(168,85,247,0.2);
+    color:var(--muted);
+    letter-spacing:0.04em;
+    background:rgba(123,79,201,0.08);
+  }
+
+  /* Player */
+  .player-area {
+    margin-top:14px;
+    border-top:1px solid rgba(255,255,255,0.06);
+    padding-top:14px;
+    display:none;
+  }
+  .player-area.open { display:block; }
+
+  .player-controls {
+    display:flex; align-items:center; gap:10px; margin-bottom:10px;
+  }
+  .btn-play {
+    width:38px; height:38px; border-radius:50%;
+    background: linear-gradient(135deg, var(--purple), var(--violet));
+    border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1rem; color:#fff;
+    transition:transform 0.2s, box-shadow 0.2s;
+    flex-shrink:0;
+  }
+  .btn-play:hover { transform:scale(1.1); box-shadow:0 0 14px rgba(168,85,247,0.5); }
+
+  .progress-wrap { flex:1; }
+  .progress-bar {
+    width:100%; height:3px;
+    background:rgba(255,255,255,0.1);
+    border-radius:3px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+  }
+  .progress-fill {
+    height:100%;
+    background: linear-gradient(90deg, var(--purple), var(--teal));
+    border-radius:3px;
+    width:0%;
+    transition:width 0.5s linear;
+  }
+  .time-row {
+    display:flex; justify-content:space-between;
+    font-size:0.65rem; color:var(--muted); margin-top:4px;
+  }
+
+  .audio-note {
+    font-size:0.7rem; color:var(--muted);
+    text-align:center;
+    padding:8px;
+    background:rgba(255,255,255,0.03);
+    border-radius:8px;
+    font-style:italic;
+  }
+
+  /* Info expanded */
+  .info-expanded {
+    margin-top:12px;
+    display:none;
+  }
+  .info-expanded.open { display:block; }
+  .info-section { margin-bottom:10px; }
+  .info-label {
+    font-size:0.65rem;
+    color:var(--chakra-color, var(--violet));
+    text-transform:uppercase;
+    letter-spacing:0.15em;
+    margin-bottom:5px;
+  }
+  .info-items {
+    display:flex; flex-wrap:wrap; gap:4px;
+  }
+  .info-item {
+    font-size:0.72rem;
+    color: rgba(232,224,240,0.8);
+    background:rgba(255,255,255,0.04);
+    border-radius:6px;
+    padding:3px 8px;
+  }
+
+  .sistema-badge {
+    display:inline-block;
+    font-size:0.6rem;
+    padding:2px 8px;
+    border-radius:20px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .badge-usui { background:rgba(201,168,76,0.12); color:var(--gold); border:1px solid rgba(201,168,76,0.25); }
+  .badge-karuna { background:rgba(0,212,170,0.1); color:var(--teal); border:1px solid rgba(0,212,170,0.2); }
+
+  /* No results */
+  .no-results {
+    text-align:center; padding:40px 20px;
+    color:var(--muted); font-size:0.9rem;
+    grid-column: 1/-1;
+    display:none;
+  }
+
+  /* Footer */
+  footer {
+    text-align:center;
+    padding:30px 20px;
+    color:var(--muted);
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    border-top:1px solid rgba(255,255,255,0.05);
+    margin-top:40px;
+  }
+
+  .hidden { display:none !important; }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<div class="container">
+  <header>
+    <div class="header-glow"></div>
+    <div class="mandala-ring"></div>
+    <h1>Frequências Hz do Reiki</h1>
+    <p class="subtitle">Terapia Vibracional Multidimensional</p>
+    <div class="divider"></div>
+  </header>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Buscar por sintoma, benefício ou região..." />
+    <p class="search-hint">ex: ansiedade · foco · traumas · paz · aterramento</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="setTab('todos')">Todos</button>
+    <button class="tab" onclick="setTab('usui')">Reiki Usui</button>
+    <button class="tab" onclick="setTab('karuna')">Karuna Ki</button>
+    <button class="tab" onclick="setTab('playlist')">▶ Playlist Completa</button>
+  </div>
+
+  <div class="playlist-bar" id="playlistBar">
+    <div class="playlist-bar-info">
+      <div class="playlist-bar-label">Tocando agora</div>
+      <div class="playlist-bar-title" id="plBarTitle">—</div>
+      <div class="playlist-bar-sub" id="plBarSub">—</div>
+    </div>
+    <button class="btn-playlist-play" id="plBarBtn" onclick="togglePlaylistPlay()">▶</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div class="no-results" id="noResults">Nenhum áudio encontrado para essa busca.</div>
+</div>
+
+<footer>
+  Frequências identificadas por Radiestesia e Radiônica &nbsp;·&nbsp; Áudio terapêutico vibracional
+</footer>
+
+<audio id="globalAudio"></audio>
+
+<script>
+const audios = [
+  // USUI
+  {
+    id: 1, sistema: 'usui',
+    nome: 'Choku Rei', hz: '651 Hz', chakra: 'Chakra Básico',
+    color: '#e05050',
+    arquivo: 'Chokurei mantra 970 hz.mp3',
+    atua: ['aterramento','proteção energética','vitalidade física','desbloqueio energético','energia vital'],
+    estimula: ['segurança','força física','estabilidade emocional','circulação energética'],
+    regiao: ['pernas','coluna base','sistema energético primário']
+  },
+  {
+    id: 2, sistema: 'usui',
+    nome: 'Sei He Ki', hz: '748 Hz', chakra: 'Chakra Umbilical',
+    color: '#e07830',
+    arquivo: 'Seiheki Mantra.mp3',
+    atua: ['emoções','traumas emocionais','vícios','ansiedade','subconsciente emocional'],
+    estimula: ['equilíbrio emocional','criatividade','limpeza psíquica','harmonia afetiva'],
+    regiao: ['ventre','sistema emocional','águas internas']
+  },
+  {
+    id: 3, sistema: 'usui',
+    nome: 'Hon Sha Ze Sho Nen', hz: '818 Hz', chakra: 'Plexo Solar',
+    color: '#d4c030',
+    arquivo: 'Honshazeshonen Mantra.mp3',
+    atua: ['conexão energética','campo mental','memórias','padrões subconscientes','distância energética'],
+    estimula: ['foco mental','clareza','expansão de consciência','integração energética'],
+    regiao: ['plexo solar','mente subconsciente']
+  },
+  {
+    id: 4, sistema: 'usui',
+    nome: 'Dai Ko Myo', hz: '1306 Hz', chakra: 'Chakra Cardíaco',
+    color: '#40c080',
+    arquivo: 'DaiKoMyo mantra.mp3',
+    atua: ['despertar espiritual','elevação vibracional','cura profunda','consciência superior'],
+    estimula: ['paz interior','amor universal','expansão espiritual','harmonização energética'],
+    regiao: ['coração energético','campo áurico']
+  },
+  {
+    id: 5, sistema: 'usui',
+    nome: 'Koriki', hz: '845 Hz', chakra: 'Chakra Laríngeo',
+    color: '#3090e0',
+    arquivo: 'Koriki  mantra.mp3',
+    atua: ['expressão','comunicação energética','força interior','coragem vibracional'],
+    estimula: ['fala consciente','autenticidade','manifestação'],
+    regiao: ['garganta','campo expressivo']
+  },
+  {
+    id: 6, sistema: 'usui',
+    nome: 'La Hanna Nai', hz: '1951 Hz', chakra: 'Chakra Frontal',
+    color: '#6060d0',
+    arquivo: 'La Hanna Nai 1951 hz.mp3',
+    atua: ['intuição','percepção energética','visão interior','expansão psíquica'],
+    estimula: ['clareza intuitiva','sensibilidade energética','percepção espiritual'],
+    regiao: ['terceiro olho','mente superior']
+  },
+  {
+    id: 7, sistema: 'usui',
+    nome: 'Dai Ko Mio Tibetano', hz: '8980 Hz', chakra: 'Chakra Coronário',
+    color: '#c060e0',
+    arquivo: 'DaiKoMyo mantra.mp3',
+    atua: ['consciência cósmica','transcendência','expansão espiritual elevada'],
+    estimula: ['estados meditativos profundos','conexão superior','silêncio mental'],
+    regiao: ['coroa','campo cósmico']
+  },
+  // KARUNA KI
+  {
+    id: 8, sistema: 'karuna',
+    nome: 'Zonar', hz: '870 Hz', chakra: 'Chakra Básico',
+    color: '#e06030',
+    arquivo: 'Zonar 870 hz pad.mp3',
+    atua: ['traumas profundos','memórias celulares','limpeza energética','registros limitantes'],
+    estimula: ['libertação','renovação celular','limpeza de padrões'],
+    regiao: ['base','corpo celular']
+  },
+  {
+    id: 9, sistema: 'karuna',
+    nome: 'Halu', hz: '969 Hz', chakra: 'Chakra Umbilical',
+    color: '#e04040',
+    arquivo: 'Halu mantra 969 hz.mp3',
+    atua: ['ilusões mentais','padrões negativos','fortalecimento emocional'],
+    estimula: ['clareza','equilíbrio','força emocional'],
+    regiao: ['ventre','campo emocional']
+  },
+  {
+    id: 10, sistema: 'karuna',
+    nome: 'Ramar', hz: '1890 Hz', chakra: 'Plexo Solar',
+    color: '#c8a020',
+    arquivo: 'Rama mantra 1980 hz.mp3',
+    atua: ['aterramento','equilíbrio nervoso','força energética'],
+    estimula: ['estabilidade','poder pessoal','equilíbrio nervoso'],
+    regiao: ['plexo solar','sistema nervoso']
+  },
+  {
+    id: 11, sistema: 'karuna',
+    nome: 'Iava + Harth', hz: '4990 / 1728 Hz', chakra: 'Chakra Cardíaco',
+    color: '#30c060',
+    arquivo: 'Iava Mantra 4990 hz.mp3',
+    atua: ['amor incondicional','compaixão','harmonização afetiva'],
+    estimula: ['amor','compaixão','harmonia nos relacionamentos'],
+    regiao: ['coração','campo afetivo']
+  },
+  {
+    id: 12, sistema: 'karuna',
+    nome: 'Gnosa', hz: '2810 Hz', chakra: 'Chakra Laríngeo',
+    color: '#20a0c0',
+    arquivo: 'Gnosa Mantra 2810 .mp3',
+    atua: ['mediunidade','percepção energética','expansão intuitiva'],
+    estimula: ['clareza na comunicação','percepção ampliada','expansão intuitiva'],
+    regiao: ['garganta','campo intuitivo']
+  },
+  {
+    id: 13, sistema: 'karuna',
+    nome: 'Shanti', hz: '5908 Hz', chakra: 'Chakra Frontal',
+    color: '#5050c8',
+    arquivo: 'Shanti Mantra 5908 hz.mp3',
+    atua: ['paz mental','serenidade','dissolução de conflitos','harmonia espiritual'],
+    estimula: ['paz','serenidade','harmonia interior'],
+    regiao: ['mente','campo mental']
+  },
+  {
+    id: 14, sistema: 'karuna',
+    nome: 'OM', hz: '10500 Hz', chakra: 'Chakra Coronário',
+    color: '#c040c0',
+    arquivo: 'OM Mantra 10500 hz.mp3',
+    atua: ['conexão universal','consciência espiritual','estados meditativos elevados'],
+    estimula: ['conexão total','consciência expandida','união com o todo'],
+    regiao: ['coroa','campo universal']
+  },
+  {
+    id: 15, sistema: 'karuna',
+    nome: 'Kriya', hz: '3969 Hz', chakra: 'Chakra Frontal',
+    color: '#8040d0',
+    arquivo: 'Kriya Mantra 3969 hz.mp3',
+    atua: ['ação consciente','transformação','aceleração espiritual'],
+    estimula: ['ação','transformação','aceleração vibracional'],
+    regiao: ['mente','campo de ação']
+  }
+];
+
+// ---- CONFIG: coloque a URL base dos seus mp3 aqui ----
+const BASE_URL = 'https://SEU-DOMINIO.com.br/audios/';
+
+let currentTab = 'todos';
+let currentSearch = '';
+let playingId = null;
+let playlistMode = false;
+let playlistIndex = 0;
+let isPlaying = false;
+const audioEl = document.getElementById('globalAudio');
+
+function getFilteredList() {
+  let list = audios;
+  if (currentTab === 'usui') list = list.filter(a => a.sistema === 'usui');
+  else if (currentTab === 'karuna') list = list.filter(a => a.sistema === 'karuna');
+  if (currentSearch.trim()) {
+    const q = currentSearch.toLowerCase().trim();
+    list = list.filter(a =>
+      a.nome.toLowerCase().includes(q) ||
+      a.hz.includes(q) ||
+      a.chakra.toLowerCase().includes(q) ||
+      a.atua.some(x => x.toLowerCase().includes(q)) ||
+      a.estimula.some(x => x.toLowerCase().includes(q)) ||
+      a.regiao.some(x => x.toLowerCase().includes(q))
+    );
+  }
+  return list;
+}
+
+function setTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', ['todos','usui','karuna','playlist'][i] === tab);
+  });
+  if (tab === 'playlist') {
+    startPlaylist();
+  } else {
+    renderGrid();
+  }
+}
+
+function renderGrid() {
+  const list = getFilteredList();
+  const grid = document.getElementById('grid');
+  const noRes = document.getElementById('noResults');
+  grid.innerHTML = '';
+  noRes.style.display = list.length === 0 ? 'block' : 'none';
+
+  list.forEach(a => {
+    const card = document.createElement('div');
+    card.className = 'card' + (playingId === a.id ? ' active-card' : '');
+    card.style.setProperty('--chakra-color', a.color);
+    card.id = 'card-' + a.id;
+
+    const tags = [...a.atua.slice(0,3), ...a.estimula.slice(0,2)];
+    const badgeClass = a.sistema === 'usui' ? 'badge-usui' : 'badge-karuna';
+    const badgeText = a.sistema === 'usui' ? 'Reiki Usui' : 'Karuna Ki';
+
+    card.innerHTML = `
+      <span class="sistema-badge ${badgeClass}">${badgeText}</span>
+      <div class="card-header">
+        <div class="chakra-dot"></div>
+        <div>
+          <div class="card-name">${a.nome}</div>
+          <div class="card-hz">${a.hz}</div>
+          <div class="card-chakra">${a.chakra}</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        ${tags.map(t => `<span class="tag">${t}</span>`).join('')}
+      </div>
+      <div class="player-area ${playingId === a.id ? 'open' : ''}" id="player-${a.id}">
+        <div class="player-controls">
+          <button class="btn-play" id="btn-${a.id}" onclick="togglePlay(${a.id}, event)">
+            ${playingId === a.id && isPlaying ? '⏸' : '▶'}
+          </button>
+          <div class="progress-wrap">
+            <div class="progress-bar" onclick="seekAudio(event, ${a.id})">
+              <div class="progress-fill" id="prog-${a.id}" style="width:0%"></div>
+            </div>
+            <div class="time-row">
+              <span id="cur-${a.id}">0:00</span>
+              <span id="dur-${a.id}">--:--</span>
+            </div>
+          </div>
+        </div>
+        <div class="audio-note">🎧 Use fones de ouvido para melhor experiência vibracional</div>
+        <div class="info-expanded open" id="info-${a.id}">
+          <div class="info-section">
+            <div class="info-label">Atua em</div>
+            <div class="info-items">${a.atua.map(x=>`<span class="info-item">${x}</span>`).join('')}</div>
+          </div>
+          <div class="info-section">
+            <div class="info-label">Pode estimular</div>
+            <div class="info-items">${a.estimula.map(x=>`<span class="info-item">${x}</span>`).join('')}</div>
+          </div>
+          <div class="info-section">
+            <div class="info-label">Região</div>
+            <div class="info-items">${a.regiao.map(x=>`<span class="info-item">${x}</span>`).join('')}</div>
+          </div>
+        </div>
+      </div>
+      ${playingId !== a.id ? `<div style="text-align:center;margin-top:4px"><button onclick="openCard(${a.id},event)" style="background:none;border:none;color:var(--muted);font-size:0.75rem;cursor:pointer;font-family:Raleway,sans-serif;letter-spacing:0.05em">▶ tocar este áudio</button></div>` : ''}
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function openCard(id, e) {
+  if (e) e.stopPropagation();
+  loadAudio(id);
+}
+
+function loadAudio(id) {
+  const a = audios.find(x => x.id === id);
+  if (!a) return;
+  playingId = id;
+  playlistMode = false;
+  audioEl.src = BASE_URL + encodeURIComponent(a.arquivo);
+  audioEl.play().catch(()=>{});
+  isPlaying = true;
+  renderGrid();
+  updateAudioEvents(id);
+  // scroll to card
+  setTimeout(()=>{
+    const el = document.getElementById('card-'+id);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+  }, 100);
+}
+
+function togglePlay(id, e) {
+  if (e) e.stopPropagation();
+  if (playingId !== id) { loadAudio(id); return; }
+  if (isPlaying) {
+    audioEl.pause();
+    isPlaying = false;
+  } else {
+    audioEl.play().catch(()=>{});
+    isPlaying = true;
+  }
+  const btn = document.getElementById('btn-'+id);
+  if (btn) btn.textContent = isPlaying ? '⏸' : '▶';
+}
+
+function updateAudioEvents(id) {
+  audioEl.ontimeupdate = () => {
+    const prog = document.getElementById('prog-'+id);
+    const cur = document.getElementById('cur-'+id);
+    if (!prog || !cur) return;
+    const pct = audioEl.duration ? (audioEl.currentTime / audioEl.duration * 100) : 0;
+    prog.style.width = pct + '%';
+    cur.textContent = fmt(audioEl.currentTime);
+    if (playlistMode) {
+      document.getElementById('plBarSub').textContent = fmt(audioEl.currentTime) + (audioEl.duration ? ' / ' + fmt(audioEl.duration) : '');
+    }
+  };
+  audioEl.onloadedmetadata = () => {
+    const dur = document.getElementById('dur-'+id);
+    if (dur) dur.textContent = fmt(audioEl.duration);
+  };
+  audioEl.onended = () => {
+    if (playlistMode) nextPlaylist();
+    else { isPlaying = false; const btn = document.getElementById('btn-'+id); if(btn) btn.textContent='▶'; }
+  };
+}
+
+function seekAudio(e, id) {
+  if (playingId !== id || !audioEl.duration) return;
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  audioEl.currentTime = pct * audioEl.duration;
+}
+
+function fmt(s) {
+  if (!s || isNaN(s)) return '0:00';
+  const m = Math.floor(s/60), sec = Math.floor(s%60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+// PLAYLIST
+function startPlaylist() {
+  playlistMode = true;
+  playlistIndex = 0;
+  const bar = document.getElementById('playlistBar');
+  bar.classList.add('visible');
+  playlistNext(0);
+  renderGrid();
+}
+
+function playlistNext(idx) {
+  playlistIndex = idx;
+  const a = audios[idx];
+  if (!a) { stopPlaylist(); return; }
+  playingId = a.id;
+  audioEl.src = BASE_URL + encodeURIComponent(a.arquivo);
+  audioEl.play().catch(()=>{});
+  isPlaying = true;
+  document.getElementById('plBarTitle').textContent = a.nome + ' — ' + a.hz;
+  document.getElementById('plBarSub').textContent = (idx+1) + ' de ' + audios.length;
+  document.getElementById('plBarBtn').textContent = '⏸';
+  updateAudioEvents(a.id);
+  renderGrid();
+  setTimeout(()=>{ const el = document.getElementById('card-'+a.id); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }, 100);
+}
+
+function nextPlaylist() {
+  if (playlistIndex < audios.length - 1) playlistNext(playlistIndex + 1);
+  else stopPlaylist();
+}
+
+function togglePlaylistPlay() {
+  if (isPlaying) {
+    audioEl.pause(); isPlaying = false;
+    document.getElementById('plBarBtn').textContent = '▶';
+  } else {
+    audioEl.play().catch(()=>{}); isPlaying = true;
+    document.getElementById('plBarBtn').textContent = '⏸';
+  }
+}
+
+function stopPlaylist() {
+  playlistMode = false;
+  isPlaying = false;
+  playingId = null;
+  document.getElementById('playlistBar').classList.remove('visible');
+  renderGrid();
+}
+
+// Search
+document.getElementById('searchInput').addEventListener('input', e => {
+  currentSearch = e.target.value;
+  if (currentTab === 'playlist') { currentTab='todos'; document.querySelectorAll('.tab')[0].classList.add('active'); document.querySelectorAll('.tab')[3].classList.remove('active'); }
+  renderGrid();
+});
+
+// Init
+renderGrid();
+</script>
+</body>
+</html>
